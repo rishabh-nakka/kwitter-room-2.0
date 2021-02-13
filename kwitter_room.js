@@ -24,11 +24,17 @@ var firebaseConfig = {
                 purpose:"addingRoomName"
           });
           window.location="kwitter_page.html";
+
+          
     }
 function getData() {firebase.database().ref("/").on('value', function(snapshot) {document.getElementById("output").innerHTML = "";snapshot.forEach(function(childSnapshot) {childKey  = childSnapshot.key;
        Room_names = childKey;
       //Start code
-      document.getElementById("output").innerHTML+="<div class='room_name' id='"+Room_names+"' onclick='redirect_to_room_name(this.id)'>"+Room_names+"</div>";
+      document.getElementById("output").innerHTML+="<div class='room_name' id='"+Room_names+"' onclick='redirectToRoom_Name(this.id)'>"+Room_names+"</div>";
       //End code
       });});}
 getData();
+function redirectToRoom_Name(name){
+      localStorage.setItem("room_input",name);
+      window.location="kwitter_page.html";
+}
